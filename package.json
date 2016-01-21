@@ -1,0 +1,29 @@
+{
+    "name": "pb-completions",
+    "main": "./lib/pb-completions",
+    "version": "1.0.0",
+    "description": "An atom package for autocompletion in pebble projects.",
+    "license": "MIT",
+    "engines": {
+        "atom": ">=1.0.0 <2.0.0"
+    },
+    "repository": "https://github.com/jneubrand/pb-completions",
+    "keywords": [
+        "autocomplete",
+        "completion",
+        "complete",
+        "pebble",
+        "watch",
+        "sdk",
+        "c"
+    ],
+    "dependencies": {
+    },
+    "providedServices": {
+        "autocomplete.provider": {
+            "versions": {
+                "2.0.0": "provide"
+            }
+        }
+    }
+}
