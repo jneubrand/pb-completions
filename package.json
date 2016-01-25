@@ -17,7 +17,9 @@
     "sdk",
     "c"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "fuzzaldrin": "^2.1.0"
+  },
   "providedServices": {
     "autocomplete.provider": {
       "versions": {
