@@ -4,6 +4,7 @@
 /* jshint esversion: 6 */
 /* global localStorage, console, atom, module, describe, it, expect */
 import os from 'os';
+import child_process from 'child_process';
 
 let PbCompletionsProvider = require(__dirname + '/../lib/provider.js');
 
@@ -11,12 +12,16 @@ describe('Provider', () => {
     describe('provider initialization', () => {
         it('should replace directory shorthands correctly', () => {
             let provider = new PbCompletionsProvider();
-            provider.init('{{{HOME}}}/*home*{{{AND}}}{{{LIB}}}/*lib*{{{AND}}}*bare*');
+            provider.init('{{{HOME}}}/*home*{{{AND}}}{{{LIB}}}/*lib*{{{AND}}}*bare*{{{AND}}}{{{INCLUDE}}}/*include*');
             expect(provider.headerLocations).toEqual(
                 [
                     os.homedir() + '/*home*',
                     __dirname.split('/').slice(0,-1).join('/') + '/lib/*lib*',
-                    '*bare*'
+                    '*bare*',
+                    child_process.spawnSync('pebble',
+                        ['sdk', 'include-path', 'aplite'])
+                        .output[1].toString('utf-8').replace('\n', '') +
+                        '/*include*'
                 ]
             );
         });
